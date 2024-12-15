@@ -1,5 +1,6 @@
 package com.israelmerlyn.app_jetpack.views
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,15 +14,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.NavController
 import com.israelmerlyn.app_jetpack.components.ActionButton
 import com.israelmerlyn.app_jetpack.components.MainButton
 import com.israelmerlyn.app_jetpack.components.Space
 import com.israelmerlyn.app_jetpack.components.TitleBar
 import com.israelmerlyn.app_jetpack.components.TitleView
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeView() {
+fun HomeView(navController: NavController) {
 
     Scaffold(
         topBar = {
@@ -36,12 +39,12 @@ fun HomeView() {
             ActionButton()
         }
     ) {
-        ContentHomeView()
+        ContentHomeView(navController)
     }
 }
 
 @Composable
-fun ContentHomeView() {
+fun ContentHomeView(navController: NavController) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -50,7 +53,7 @@ fun ContentHomeView() {
         TitleView(name = "Home View")
         Space()
         MainButton(name = "Details View", color = Color.White, backColor = Color.Red) {
-            println("btn generico")
+          navController.navigate("Details")
         }
     }
 }
