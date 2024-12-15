@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.israelmerlyn.app_jetpack"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.israelmerlyn.app_jetpack"
