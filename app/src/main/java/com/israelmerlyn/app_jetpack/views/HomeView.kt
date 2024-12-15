@@ -13,19 +13,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.israelmerlyn.app_jetpack.components.ActionButton
+import com.israelmerlyn.app_jetpack.components.MainButton
+import com.israelmerlyn.app_jetpack.components.Space
 import com.israelmerlyn.app_jetpack.components.TitleBar
+import com.israelmerlyn.app_jetpack.components.TitleView
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeView (){
+fun HomeView() {
 
-    Scaffold (
+    Scaffold(
         topBar = {
-          CenterAlignedTopAppBar(
-              title = { TitleBar(name = "Home") }, colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                  containerColor = Color.Red
-              )
-          )
+            CenterAlignedTopAppBar(
+                title = { TitleBar(name = "Home") },
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                    containerColor = Color.Red
+                )
+            )
+        },
+        floatingActionButton = {
+            ActionButton()
         }
     ) {
         ContentHomeView()
@@ -33,10 +41,17 @@ fun HomeView (){
 }
 
 @Composable
-fun ContentHomeView(){
-        Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment =Alignment.CenterHorizontally) {
-            Text(text = "Home View")
-            Text(text = "Home View")
+fun ContentHomeView() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        TitleView(name = "Home View")
+        Space()
+        MainButton(name = "Details View", color = Color.White, backColor = Color.Red) {
+            println("btn generico")
         }
+    }
 }
 
