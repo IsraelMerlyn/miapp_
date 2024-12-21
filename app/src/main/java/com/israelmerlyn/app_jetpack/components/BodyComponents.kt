@@ -3,6 +3,7 @@ package com.israelmerlyn.app_jetpack.components
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
@@ -11,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -25,6 +27,16 @@ fun Space() {
 }
 
 @Composable
+fun SpaceH(size: Dp =5.dp){
+    Spacer(modifier = Modifier.height(size))
+}
+
+@Composable
+fun SpaceW(size: Dp =5.dp){
+    Spacer(modifier = Modifier.width(size))
+}
+
+@Composable
 fun MainButton(name: String, backColor: Color, color: Color, onClick: () -> Unit) {
 
     Button(
@@ -36,3 +48,4 @@ fun MainButton(name: String, backColor: Color, color: Color, onClick: () -> Unit
 
     }
 }
+
