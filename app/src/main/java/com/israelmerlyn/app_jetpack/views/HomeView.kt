@@ -47,7 +47,10 @@ fun HomeView(navController: NavController) {
         ContentHomeView(navController)
     }
 }
+@Composable
+fun AppDescuento(navController: NavController){
 
+}
 @Composable
 fun ContentHomeView(navController: NavController) {
     val id=123
@@ -58,12 +61,15 @@ fun ContentHomeView(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        TitleView(name = "Home View")
-        Space()
-        TextField(value = opcional, onValueChange = {opcional = it} , label = { Text(text = "Opcional") })
 
-        MainButton(name = "Details View", color = Color.White, backColor = Color.Red) {
-          navController.navigate("Details/${id}/?${opcional}")
+
+//        TextField(value = opcional, onValueChange = {opcional = it} , label = { Text(text = "Opcional") })
+
+        MainButton(name = "Descuento", color = Color.White, backColor = Color.Red) {
+          navController.navigate("Descuento")
+        }
+        MainButton(name = "Details", color = Color.White, backColor = Color.Blue) {
+            navController.navigate("Details/${id}/?${opcional}")
         }
     }
 }

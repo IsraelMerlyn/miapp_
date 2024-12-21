@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.israelmerlyn.app_jetpack.views.DescuentoView
 import com.israelmerlyn.app_jetpack.views.DetailsView
 import com.israelmerlyn.app_jetpack.views.HomeView
 
@@ -17,6 +18,9 @@ fun NavMananger() {
     NavHost(navController = navController, startDestination = "Home") {
         composable("Home") {
             HomeView(navController)
+        }
+        composable("Descuento") {
+            DescuentoView(navController)
         }
         composable("Details/{id}/?{opcional}", arguments = listOf(
             navArgument("id"){ type=NavType.IntType},
