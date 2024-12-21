@@ -15,12 +15,18 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.israelmerlyn.app_jetpack.components.MainButtonD
 import com.israelmerlyn.app_jetpack.components.MainIconButton
+import com.israelmerlyn.app_jetpack.components.MainTextFIeld
 import com.israelmerlyn.app_jetpack.components.SpaceH
 import com.israelmerlyn.app_jetpack.components.TitleBar
 
@@ -52,14 +58,17 @@ fun ContentDetailDescuentoView(navController: NavController, paddingValues: Padd
             .padding(paddingValues)
             .padding(10.dp)
             .fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
+//        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Hola")
+       var precio by remember { mutableStateOf("") }
+       var descuento by remember { mutableStateOf("") }
+        MainTextFIeld(value = precio, onValueChange = {precio=it}, label = "precio")
         SpaceH()
-        Text(text = "Hola")
-        SpaceH(50.dp)
-
-        Text(text = "Hola")
+        MainTextFIeld(value = descuento, onValueChange = {descuento=it}, label = "Descuento")
+        SpaceH(10.dp)
+        MainButtonD(text = "Generar Descuento") { }
+        SpaceH()
+        MainButtonD(text = "Limpiar", color = Color.Red) { }
     }
 }
