@@ -93,7 +93,7 @@ fun ContentDetailDescuentoView(navController: NavController, paddingValues: Padd
             precioDescuento = 0.0
             totalDescuento = 0.0
         }
-        if (showAlert) Alert(title = "Alerta", message = "Escribe el precio y descuento", confirmText = "Ok", onConfirmClick = {showAlert = false}) { }
+        if (showAlert) Alert( title = "Alerta", message = "Escribe el precio y descuento", confirmText = "Ok", onConfirmClick = {showAlert = false}) { }
     }
 }
 
