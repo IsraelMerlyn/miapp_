@@ -15,14 +15,22 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.israelmerlyn.app_jetpack.components.Alert
+import com.israelmerlyn.app_jetpack.components.MainButtonD
 import com.israelmerlyn.app_jetpack.components.MainIconButton
+import com.israelmerlyn.app_jetpack.components.MainTextFIeld
 import com.israelmerlyn.app_jetpack.components.SpaceH
 import com.israelmerlyn.app_jetpack.components.TitleBar
+import com.israelmerlyn.app_jetpack.components.TwoCards
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -52,14 +60,50 @@ fun ContentDetailDescuentoView(navController: NavController, paddingValues: Padd
             .padding(paddingValues)
             .padding(10.dp)
             .fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
+//        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Hola")
-        SpaceH()
-        Text(text = "Hola")
-        SpaceH(50.dp)
+       var precio by remember { mutableStateOf("") }
+       var descuento by remember { mutableStateOf("") }
+       var precioDescuento by remember { mutableStateOf(0.0) }
+       var totalDescuento by remember { mutableStateOf(0.0) }
+       var showAlert by remember { mutableStateOf(false) }
 
-        Text(text = "Hola")
+        TwoCards(title1 = "Total", number1 = totalDescuento, title2 = "Descuento", number2 = precioDescuento)
+
+
+        MainTextFIeld(value = precio, onValueChange = {precio=it}, label = "precio")
+        SpaceH()
+        MainTextFIeld(value = descuento, onValueChange = {descuento=it}, label = "Descuento")
+        SpaceH(10.dp)
+        MainButtonD(text = "Generar Descuento") {
+//            precioDescuento = calcularPrecio(precio.toDouble(), descuento.toDouble())
+//            totalDescuento = calcularDescuento(precio.toDouble(), descuento.toDouble())
+            if (precio!="" && descuento!= ""){
+                            precioDescuento = calcularPrecio(precio.toDouble(), descuento.toDouble())
+            totalDescuento = calcularDescuento(precio.toDouble(), descuento.toDouble())
+            }else{
+                showAlert = true
+            }
+        }
+        SpaceH()
+        MainButtonD(text = "Limpiar", color = Color.Red) {
+            precio = ""
+            descuento = ""
+            precioDescuento = 0.0
+            totalDescuento = 0.0
+        }
+        if (showAlert) Alert(title = "Alerta", message = "Escribe el precio y descuento", confirmText = "Ok", onConfirmClick = {showAlert = false}) { }
     }
+}
+
+fun calcularPrecio(precio:Double, descuento:Double):Double{
+    val res = precio - calcularDescuento(precio, descuento)
+    return kotlin.math.round(res * 100) / 100.0
+
+}
+
+fun calcularDescuento(precio:Double, descuento:Double):Double{
+    val res = precio * (1 - descuento / 100)
+    return kotlin.math.round(res * 100) / 100.0
 }

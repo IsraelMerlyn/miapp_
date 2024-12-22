@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -76,6 +77,7 @@ fun ContentHomeView(navController: NavController) {
     // Lista de opciones con íconos
     val options = listOf(
         Option("Descuento", Color.Red, Icons.Default.ShoppingCart, "Descuento"),
+        Option("Tlaxiaco", Color.Red, Icons.Default.AddCircle, "Descuento"),
         Option("Details", Color.Blue, Icons.Default.Info, "Details/${id}/?${opcional}")
     )
 
