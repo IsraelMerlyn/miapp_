@@ -29,6 +29,7 @@ import com.israelmerlyn.app_jetpack.components.MainIconButton
 import com.israelmerlyn.app_jetpack.components.MainTextFIeld
 import com.israelmerlyn.app_jetpack.components.SpaceH
 import com.israelmerlyn.app_jetpack.components.TitleBar
+import com.israelmerlyn.app_jetpack.components.TwoCards
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -63,6 +64,12 @@ fun ContentDetailDescuentoView(navController: NavController, paddingValues: Padd
     ) {
        var precio by remember { mutableStateOf("") }
        var descuento by remember { mutableStateOf("") }
+       var precioDescuento by remember { mutableStateOf(0.0) }
+       var totalDescuento by remember { mutableStateOf(0.0) }
+
+        TwoCards(title1 = "Total", number1 = totalDescuento, title2 = "Descuento", number2 = precioDescuento)
+
+
         MainTextFIeld(value = precio, onValueChange = {precio=it}, label = "precio")
         SpaceH()
         MainTextFIeld(value = descuento, onValueChange = {descuento=it}, label = "Descuento")
