@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.israelmerlyn.app_jetpack.components.Alert
 import com.israelmerlyn.app_jetpack.components.MainButtonD
 import com.israelmerlyn.app_jetpack.components.MainIconButton
 import com.israelmerlyn.app_jetpack.components.MainTextFIeld
@@ -66,6 +67,7 @@ fun ContentDetailDescuentoView(navController: NavController, paddingValues: Padd
        var descuento by remember { mutableStateOf("") }
        var precioDescuento by remember { mutableStateOf(0.0) }
        var totalDescuento by remember { mutableStateOf(0.0) }
+       var showAlert by remember { mutableStateOf(false) }
 
         TwoCards(title1 = "Total", number1 = totalDescuento, title2 = "Descuento", number2 = precioDescuento)
 
@@ -75,8 +77,14 @@ fun ContentDetailDescuentoView(navController: NavController, paddingValues: Padd
         MainTextFIeld(value = descuento, onValueChange = {descuento=it}, label = "Descuento")
         SpaceH(10.dp)
         MainButtonD(text = "Generar Descuento") {
-            precioDescuento = calcularPrecio(precio.toDouble(), descuento.toDouble())
+//            precioDescuento = calcularPrecio(precio.toDouble(), descuento.toDouble())
+//            totalDescuento = calcularDescuento(precio.toDouble(), descuento.toDouble())
+            if (precio!="" && descuento!= ""){
+                            precioDescuento = calcularPrecio(precio.toDouble(), descuento.toDouble())
             totalDescuento = calcularDescuento(precio.toDouble(), descuento.toDouble())
+            }else{
+                showAlert = true
+            }
         }
         SpaceH()
         MainButtonD(text = "Limpiar", color = Color.Red) {
@@ -85,6 +93,7 @@ fun ContentDetailDescuentoView(navController: NavController, paddingValues: Padd
             precioDescuento = 0.0
             totalDescuento = 0.0
         }
+        if (showAlert) Alert(title = "Alerta", message = "Escribe el precio y descuento", confirmText = "Ok", onConfirmClick = {showAlert = false}) { }
     }
 }
 
