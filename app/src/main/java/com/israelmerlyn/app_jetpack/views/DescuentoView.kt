@@ -74,8 +74,27 @@ fun ContentDetailDescuentoView(navController: NavController, paddingValues: Padd
         SpaceH()
         MainTextFIeld(value = descuento, onValueChange = {descuento=it}, label = "Descuento")
         SpaceH(10.dp)
-        MainButtonD(text = "Generar Descuento") { }
+        MainButtonD(text = "Generar Descuento") {
+            precioDescuento = calcularPrecio(precio.toDouble(), descuento.toDouble())
+            totalDescuento = calcularDescuento(precio.toDouble(), descuento.toDouble())
+        }
         SpaceH()
-        MainButtonD(text = "Limpiar", color = Color.Red) { }
+        MainButtonD(text = "Limpiar", color = Color.Red) {
+            precio = ""
+            descuento = ""
+            precioDescuento = 0.0
+            totalDescuento = 0.0
+        }
     }
+}
+
+fun calcularPrecio(precio:Double, descuento:Double):Double{
+    val res = precio - calcularDescuento(precio, descuento)
+    return kotlin.math.round(res * 100) / 100.0
+
+}
+
+fun calcularDescuento(precio:Double, descuento:Double):Double{
+    val res = precio * (1 - descuento / 100)
+    return kotlin.math.round(res * 100) / 100.0
 }
