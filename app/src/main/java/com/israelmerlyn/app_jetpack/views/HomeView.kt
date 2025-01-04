@@ -77,6 +77,7 @@ fun ContentHomeView(navController: NavController) {
     // Lista de opciones con íconos
     val options = listOf(
         Option("Descuento", Color.Red, Icons.Default.ShoppingCart, "Descuento"),
+        Option("Loteria", Color.Red, Icons.Default.ShoppingCart, "Loteria"),
         Option("Tlaxiaco", Color.Red, Icons.Default.AddCircle, "Descuento"),
         Option("Details", Color.Blue, Icons.Default.Info, "Details/${id}/?${opcional}")
     )
