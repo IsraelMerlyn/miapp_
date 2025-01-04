@@ -3,6 +3,7 @@ package com.israelmerlyn.app_jetpack.views.corrutinas
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -25,17 +26,20 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.israelmerlyn.app_jetpack.components.MainIconButton
 import com.israelmerlyn.app_jetpack.components.TitleBar
 import com.israelmerlyn.app_jetpack.viewModels.corrutinas.ItemViewModel
-import com.israelmerlyn.app_jetpack.viewModels.corrutinas.CorrutinasViewModels as CorrutinasViewModels1
+import java.lang.reflect.Modifier
+//import com.israelmerlyn.app_jetpack.viewModels.corrutinas.CoIrrutinasViewModels as CorrutinasViewModels1
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CorrutinaV1(navController: NavController, viewModel: CorrutinasViewModels1){
+fun CorrutinaV1(navController: NavController, viewModel: ItemViewModel){
     Scaffold (topBar = {
         TopAppBar(
             title = { TitleBar(name = "Corrutina") }, colors = TopAppBarDefaults.mediumTopAppBarColors(
@@ -49,14 +53,14 @@ fun CorrutinaV1(navController: NavController, viewModel: CorrutinasViewModels1){
         )
     }){
 //        ContentDetailDescuentoView(navController, it, viewModel)
-//        ItemsView(navController,  viewModel )
-        content(navController, viewModel )
+        ItemsView(navController,  viewModel )
+//
     }
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun content(navController: NavController, viewModel: CorrutinasViewModels1) {
+fun content(navController: NavController, viewModel: ItemViewModel) {
 
         Column(
             verticalArrangement = Arrangement.Center,
@@ -67,7 +71,7 @@ fun content(navController: NavController, viewModel: CorrutinasViewModels1) {
             if (viewModel.isLoading) {
                 CircularProgressIndicator()
             } else {
-                Text(text = viewModel.resultState)
+//                Text(text = viewModel.resultState)
             }
             Button(onClick = { viewModel.fetchData() }) {
                 Text(text = "Llamar API")
@@ -95,12 +99,16 @@ fun BotonColor() {
 fun ItemsView(navController: NavController, viewModel: ItemViewModel) {
     val itemsList = viewModel.itemList
     val lista by viewModel.lista.collectAsState()
-    Scaffold {
+
     LaunchedEffect(Unit) {
         viewModel.fetchData()
     }
 
-        Column() {
+        Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+
+        ) {
             if (viewModel.isLoading) {
                 CircularProgressIndicator()
             } else {
@@ -113,5 +121,5 @@ fun ItemsView(navController: NavController, viewModel: ItemViewModel) {
         }
     }
 
-}
+
 
