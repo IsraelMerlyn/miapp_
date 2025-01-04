@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.israelmerlyn.app_jetpack.components.Alert
 import com.israelmerlyn.app_jetpack.components.MainButtonD
@@ -31,11 +32,12 @@ import com.israelmerlyn.app_jetpack.components.MainTextFIeld
 import com.israelmerlyn.app_jetpack.components.SpaceH
 import com.israelmerlyn.app_jetpack.components.TitleBar
 import com.israelmerlyn.app_jetpack.components.TwoCards
+import com.israelmerlyn.app_jetpack.viewModels.CalcularViewModels1
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DescuentoView(navController: NavController) {
+fun DescuentoView(navController: NavController, viewModel: CalcularViewModels1) {
     Scaffold (topBar = {
         TopAppBar(
             title = { TitleBar(name = "Descuento") }, colors = TopAppBarDefaults.mediumTopAppBarColors(
@@ -48,12 +50,12 @@ fun DescuentoView(navController: NavController) {
             }
         )
     }){
-        ContentDetailDescuentoView(navController, it)
+        ContentDetailDescuentoView(navController, it, viewModel)
     }
 }
 
 @Composable
-fun ContentDetailDescuentoView(navController: NavController, paddingValues: PaddingValues) {
+fun ContentDetailDescuentoView(navController: NavController, paddingValues: PaddingValues, viewModel: CalcularViewModels1) {
 
     Column(
         modifier = Modifier
@@ -77,14 +79,11 @@ fun ContentDetailDescuentoView(navController: NavController, paddingValues: Padd
         MainTextFIeld(value = descuento, onValueChange = {descuento=it}, label = "Descuento")
         SpaceH(10.dp)
         MainButtonD(text = "Generar Descuento") {
-//            precioDescuento = calcularPrecio(precio.toDouble(), descuento.toDouble())
-//            totalDescuento = calcularDescuento(precio.toDouble(), descuento.toDouble())
-            if (precio!="" && descuento!= ""){
-                            precioDescuento = calcularPrecio(precio.toDouble(), descuento.toDouble())
-            totalDescuento = calcularDescuento(precio.toDouble(), descuento.toDouble())
-            }else{
-                showAlert = true
-            }
+            val result = viewModel.calcular(precio, descuento)
+            showAlert = result.second.second
+            if (!showAlert) {precioDescuento = result.first
+            totalDescuento = result.second.first}
+
         }
         SpaceH()
         MainButtonD(text = "Limpiar", color = Color.Red) {
@@ -97,13 +96,3 @@ fun ContentDetailDescuentoView(navController: NavController, paddingValues: Padd
     }
 }
 
-fun calcularPrecio(precio:Double, descuento:Double):Double{
-    val res = precio - calcularDescuento(precio, descuento)
-    return kotlin.math.round(res * 100) / 100.0
-
-}
-
-fun calcularDescuento(precio:Double, descuento:Double):Double{
-    val res = precio * (1 - descuento / 100)
-    return kotlin.math.round(res * 100) / 100.0
-}
