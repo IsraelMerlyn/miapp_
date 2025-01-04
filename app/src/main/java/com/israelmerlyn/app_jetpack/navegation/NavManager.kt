@@ -15,15 +15,23 @@ import com.israelmerlyn.app_jetpack.views.DetailsView
 import com.israelmerlyn.app_jetpack.views.HomeView
 import androidx.activity.viewModels
 import androidx.lifecycle.findViewTreeViewModelStoreOwner
+import com.israelmerlyn.app_jetpack.viewModels.loteria.LoteriaViewModels
+import com.israelmerlyn.app_jetpack.views.loteria.LoteriaView
 
 @Composable
 fun NavMananger() {
     val navController = rememberNavController()
     val viewModel: CalcularViewModels1 = viewModel()
+    val viewModelL: LoteriaViewModels = viewModel()
+
     NavHost(navController = navController, startDestination = "Home") {
         composable("Home") {
             HomeView(navController)
         }
+        composable("Loteria") {
+            LoteriaView(navController, viewModelL)
+        }
+
         composable("Descuento") {
             DescuentoView(navController, viewModel)
         }
