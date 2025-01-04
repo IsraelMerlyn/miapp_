@@ -52,7 +52,7 @@ fun HomeView(navController: NavController) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { TitleBar(name = "Home") },
+                title = { TitleBar(name = "Menu") },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = Color.Red
                 )
@@ -78,6 +78,7 @@ fun ContentHomeView(navController: NavController) {
     val options = listOf(
         Option("Descuento", Color.Red, Icons.Default.ShoppingCart, "Descuento"),
         Option("Loteria", Color.Red, Icons.Default.ShoppingCart, "Loteria"),
+        Option("Corrutinas", Color.Red, Icons.Default.ShoppingCart, "Corrutinas"),
         Option("Tlaxiaco", Color.Red, Icons.Default.AddCircle, "Descuento"),
         Option("Details", Color.Blue, Icons.Default.Info, "Details/${id}/?${opcional}")
     )
