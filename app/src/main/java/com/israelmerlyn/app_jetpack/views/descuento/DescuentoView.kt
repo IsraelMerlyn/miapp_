@@ -1,7 +1,6 @@
-package com.israelmerlyn.app_jetpack.views
+package com.israelmerlyn.app_jetpack.views.descuento
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,7 +10,6 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -23,7 +21,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.israelmerlyn.app_jetpack.components.Alert
 import com.israelmerlyn.app_jetpack.components.MainButtonD
@@ -32,7 +29,7 @@ import com.israelmerlyn.app_jetpack.components.MainTextFIeld
 import com.israelmerlyn.app_jetpack.components.SpaceH
 import com.israelmerlyn.app_jetpack.components.TitleBar
 import com.israelmerlyn.app_jetpack.components.TwoCards
-import com.israelmerlyn.app_jetpack.viewModels.CalcularViewModels1
+import com.israelmerlyn.app_jetpack.viewModels.descuento.CalcularViewModels1
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)

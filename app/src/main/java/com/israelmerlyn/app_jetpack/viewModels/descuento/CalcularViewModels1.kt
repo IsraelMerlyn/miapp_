@@ -1,4 +1,4 @@
-package com.israelmerlyn.app_jetpack.viewModels
+package com.israelmerlyn.app_jetpack.viewModels.descuento
 
 import androidx.lifecycle.ViewModel
 
